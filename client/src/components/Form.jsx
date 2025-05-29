@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import "../styles/styles.css"; // Import styles for the form
+import "../styles/form.css"; // Import styles for the form specifically
 
 function Form({ onSubmit, onCancel})
 {
@@ -9,9 +10,15 @@ function Form({ onSubmit, onCancel})
         image:null,
         description:'',
         link:'',
+        date: '',
         tag:'',
         folder: '',
         rating: 0,
+        quality: 0,
+        price: 0,
+        satisfaction: 0,
+        emotion: 3,
+        recommendation: 3,
         reviewText:'',
     });
 
@@ -23,8 +30,9 @@ function Form({ onSubmit, onCancel})
         });
     };
 
-    const handleStarClick = (rating) => {
-        setFormData({...formData, rating });
+    const handleStarClick = (field, rating) => {
+        const updated = { ...formData, [field]: rating};
+        setFormData(updated);
     };
 
     const handleSubmit = (e) => {
@@ -55,6 +63,11 @@ function Form({ onSubmit, onCancel})
                 <input type="text" name="link" value={formData.description} onChange={handleChange} />
             </div>
 
+            {/* for the date of experience */}
+            <div>
+                <label>Date of Experience:</label>
+                <input type="date" name="date" value={formData.date} onChange={handleChange} required />
+            </div>
 
             {/* for the tag input */}
             <div>
@@ -73,19 +86,55 @@ function Form({ onSubmit, onCancel})
                 <input type="text" name="folder" value={formData.folder} onChange={handleChange} />
             </div>
 
-            
-            {/* for the rating input */}
-            <div className="star-rating">
-                <label>Rating:</label>      
-                {[1, 2, 3, 4, 5].map((star) => (
-                <span
-                    key={star}
-                    onClick={() => handleStarClick(star)}
-                    style={{ color: star <= formData.rating ? 'gold' : 'lightgray', cursor: 'pointer', fontSize: '24px' }}
-                >
-                    ★
-                </span>
+
+            {/* for the star ratings */}
+            {['rating', 'quality', 'price', 'satisfaction'].map((field) => (
+                <div key={field} className="star-rating">
+                    <label>{field.charAt(0).toUpperCase() + field.slice(1)}:</label>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <span
+                        key={star}
+                        onClick={() => handleStarClick(field, star)}
+                        style={{ color: star <= formData[field] ? 'gold' : 'lightgray', cursor: 'pointer', fontSize: '24px' }}
+                        >
+                        ★
+                        </span>
+                    ))}
+                </div>
+            ))}
+
+
+            {/* for the emotion input */}
+            <div className="emotion-slider">
+                <label>Emotion:</label>
+                <input type="range" name="emotion" min="1" max="5" value={formData.emotion} onChange={handleChange} className="vertical-slider" />
+                <div className="emotion-labels">
+                    <span>Disappointed</span>
+                    <span>Uncomfortable</span>
+                    <span>Neutral</span>
+                    <span>Satisfied</span>
+                    <span>Happy</span>
+                </div>
+            </div>
+
+
+            {/* for the recommendation input */}
+            <div className="likert-scale">
+                <label>Would you recommend this?</label>
+                <div>
+                {[1, 2, 3, 4, 5].map((num) => (
+                    <label key={num}>
+                    <input
+                        type="radio"
+                        name="recommendation"
+                        value={num}
+                        checked={formData.recommendation === String(num)}
+                        onChange={handleChange}
+                    />
+                    {['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'][num - 1]}
+                    </label>
                 ))}
+                </div>
             </div>
 
 
@@ -98,8 +147,8 @@ function Form({ onSubmit, onCancel})
 
             {/* buttons for submit and cancel */}
             <div className="form-buttons">
-                <button type="submit">Save</button>
-                <button type="button" onClick={onCancel}>Cancel</button>
+                <button type="submit-button">Save</button>
+                <button type="cancel-button" onClick={onCancel}>Cancel</button>
             </div>
 
         </form>
