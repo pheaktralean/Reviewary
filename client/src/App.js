@@ -2,10 +2,11 @@
 import Footer from "./components/Footer";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
+import Create from "./pages/Create";
 function App() {
   return (
     <>
-      <Home />
+      <Create />
     </>
   );
 }
