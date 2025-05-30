@@ -2,24 +2,49 @@
 
 body {
     margin: 0;
+    overflow-x: hidden;
+    /* position: fixed; */
 
 }
 
 .layout-container {
     display: flex;
-    height: 100vh;
+    /* height: 100vh; */
     font-family: sans-serif;
+    width: 100%;
+    min-height: 100vh; /* Ensure it covers full viewport height */
+    position: fixed;
+    overflow-x: hidden;
 }
 
 /* sidebar part */
- .sidebar {
+/* .sidebar {
+    align-self: start;
+    top: 0;
+    height: 100vh;
     width: 250px;
     background-color: #f0f0f0;
     padding: 1rem;
     border-right: 1px solid #666;
     display: flex;
     flex-direction: column;
-    position: fixed;
+    position: sticky;
+} */
+
+.sidebar {
+  width: 250px;
+  background-color: #f0f0f0;
+  padding: 1rem;
+  border-right: 1px solid #666;
+  display: flex;
+  flex-direction: column;
+  position: fixed;        /* 🔒 fix it to the left side */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100vh;          /* make it full vertical height */
+  z-index: 1000;          /* stay above content if needed */
+  overflow-y: auto;       /* optional scroll if menu gets long */
 }
 
 
@@ -45,12 +70,23 @@ body {
 }
 
 /* header and main content part */
-.main-container {
-    /* max-width:100%; */
+/* .main-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+    width: 100%;
+} */
+
+.main-container {
+  margin-left: 250px;    /* equal to sidebar width */
+  flex: 1;
+  /* display: flex; */
+  /* flex-direction: column; */
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
 
 .header {
     height: 60px;
@@ -60,6 +96,7 @@ body {
     background: #ffffff;
     padding: 1rem 2rem;
     border-bottom: 1px solid #ccc;
+    width:100%;
 }
 
 .logo {

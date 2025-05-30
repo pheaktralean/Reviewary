@@ -9,11 +9,11 @@ export default function Sidebar() {
       <nav className="sidebar-nav">
         <ul>
             <li className="home">Home</li>
-            <li className="Create">Create Review</li>
-            <li className="Tags">Tags</li>
-            <li className="Folders">Folders</li>
-            <li className="Account">Account</li>
-            <li className="Logout">Logout</li>
+            <li className="create">Create Review</li>
+            <li className="tags">Tags</li>
+            <li className="folders">Folders</li>
+            <li className="account">Account</li>
+            <li className="logout">Logout</li>
         </ul>
       </nav>
     </aside>

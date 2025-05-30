@@ -1,0 +1,16 @@
+/* for the home page */
+
+body {
+    height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-y: auto;  /* Allow vertical scrolling */
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 350px);
+    justify-items: center;
+    gap: 2rem;
+    padding: 2.1rem;
+    max-width: 100%; /* Ensure grid doesn't overflow horizontally */
+}

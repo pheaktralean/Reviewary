@@ -1,0 +1,22 @@
+.add-review-card {
+  border: 2px dashed #ccc;
+  border-radius: 12px;
+  height: 350px;
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-review-card:hover {
+  background-color: #f8f8f8;
+  border-color: #999;
+}
+
+.plus-sign {
+  font-size: 3rem;
+  color: #777;
+  line-height: 1;
+}
