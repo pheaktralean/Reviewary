@@ -18,3 +18,4 @@
     - requirements.txt: list of dependencies for backend
 3. README.md: 
 4. .gitignore
+

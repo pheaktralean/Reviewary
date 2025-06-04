@@ -42,6 +42,9 @@ Get the user to sign up:\
 3. log in button
 
 # 3. Home page
+**For the home page**
+
+1. 
 
 # 4. Create review page
 
